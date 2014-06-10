@@ -46,6 +46,7 @@ define(function(require, exports, module) {
     // Default options for EmptyView class
     SlideshowView.DEFAULT_OPTIONS = {
         size:[450,500],
+        data: undefined,
         lightboxOpts: {}
     };
 

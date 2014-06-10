@@ -19,8 +19,10 @@ define(function(require, exports, module) {
         // Applies View's constructor function to AppView class
         View.apply(this, arguments);
 
-        // Create a new instance of the SlideshowView class
-        var slideshowView = new SlideshowView();
+        // Create a new instance of the SlideshowView class / pass photo data
+        var slideshowView = new SlideshowView({
+            data: this.options.data
+        });
 
         // add SlideshowView instance to app view
         this.add(slideshowView);
@@ -31,7 +33,12 @@ define(function(require, exports, module) {
     AppView.prototype.constructor = AppView;
 
     // Default options for AppView class
-    AppView.DEFAULT_OPTIONS = {};
+    AppView.DEFAULT_OPTIONS = {
+
+        // it's a good idea to add a property in the
+        // default options, even when it's undefined
+        data: undefined
+    };
 
     // Define your helper functions and prototype methods here
 
