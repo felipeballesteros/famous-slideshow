@@ -9,6 +9,10 @@ define(function(require, exports, module) {
     var Transform = require('famous/core/Transform');
     var StateModifier = require('famous/modifiers/StateModifier');
 
+    var ImageSurface = require('famous/surfaces/ImageSurface');
+
+    var SlideData = require('data/SlideData');
+
     // Constructor function for our SlideView class
     function SlideView() {
 
@@ -24,8 +28,8 @@ define(function(require, exports, module) {
         // make sure you invoke the helper function
         // in the right context by using .call()
         _createBackground.call(this);
-
         _createFilm.call(this);
+        _createPhoto.call(this);
     }
 
     // Establishes prototype chain for SlideView class to inherit from View
@@ -35,7 +39,9 @@ define(function(require, exports, module) {
     // Default options for SlideView class
     SlideView.DEFAULT_OPTIONS = {
         size: [400, 450],
-        filmBorder: 15
+        filmBorder: 15,
+        photoBorder: 3,
+        photoUrl: SlideData.defaultImage
     };
 
     //the _ before the function name indicates it's a private function
@@ -72,6 +78,27 @@ define(function(require, exports, module) {
         });
 
         this.mainNode.add(filmModifier).add(film);
+    }
+
+    //creates the image container
+    function _createPhoto() {
+        var photoSize = this.options.filmSize - 2 * this.options.photoBorder;
+
+        var photo = new ImageSurface({
+            size: [photoSize, photoSize],
+            content: this.options.photoUrl,
+            properties: {
+                zIndex: 2
+            }
+        });
+
+        this.photoModifier = new StateModifier({
+            origin: [0.5, 0],
+            align: [0.5, 0],
+            transform: Transform.translate(0, this.options.filmBorder + this.options.photoBorder, 2)
+        });
+
+        this.mainNode.add(this.photoModifier).add(photo);
     }
 
     // Define your helper functions and prototype methods here
