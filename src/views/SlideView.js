@@ -13,38 +13,7 @@ define(function(require, exports, module) {
 
     var SlideData = require('data/SlideData');
 
-    // Constructor function for our SlideView class
-    function SlideView() {
-
-        // Applies View's constructor function to SlideView class
-        View.apply(this, arguments);
-
-        this.rootModifier = new StateModifier({
-            size: this.options.size
-        });
-
-        this.mainNode = this.add(this.rootModifier);
-
-        // make sure you invoke the helper function
-        // in the right context by using .call()
-        _createBackground.call(this);
-        _createFilm.call(this);
-        _createPhoto.call(this);
-    }
-
-    // Establishes prototype chain for SlideView class to inherit from View
-    SlideView.prototype = Object.create(View.prototype);
-    SlideView.prototype.constructor = SlideView;
-
-    // Default options for SlideView class
-    SlideView.DEFAULT_OPTIONS = {
-        size: [400, 450],
-        filmBorder: 15,
-        photoBorder: 3,
-        photoUrl: SlideData.defaultImage
-    };
-
-    //the _ before the function name indicates it's a private function
+        //the _ before the function name indicates it's a private function
     function _createBackground() {
 
         // adding a surface
@@ -100,6 +69,37 @@ define(function(require, exports, module) {
 
         this.mainNode.add(this.photoModifier).add(photo);
     }
+
+    // Constructor function for our SlideView class
+    function SlideView() {
+
+        // Applies View's constructor function to SlideView class
+        View.apply(this, arguments);
+
+        this.rootModifier = new StateModifier({
+            size: this.options.size
+        });
+
+        this.mainNode = this.add(this.rootModifier);
+
+        // make sure you invoke the helper function
+        // in the right context by using .call()
+        _createBackground.call(this);
+        _createFilm.call(this);
+        _createPhoto.call(this);
+    }
+
+    // Establishes prototype chain for SlideView class to inherit from View
+    SlideView.prototype = Object.create(View.prototype);
+    SlideView.prototype.constructor = SlideView;
+
+    // Default options for SlideView class
+    SlideView.DEFAULT_OPTIONS = {
+        size: [400, 450],
+        filmBorder: 15,
+        photoBorder: 3,
+        photoUrl: SlideData.defaultImage
+    };
 
     // Define your helper functions and prototype methods here
 
