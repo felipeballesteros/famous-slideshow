@@ -32,11 +32,26 @@ define(function(require, exports, module) {
         this.mainNode = this.add(this.rootModifier);
 
         _createLightbox.call(this);
+        _createSlides.call(this);
 
         // Add the slideView object
         var slideView = new SlideView();
 
         this.add(slideView);
+    }
+
+    function _createSlides() {
+        this.slides = [];
+        this.currentIndex = 0;
+
+        for (var i = 0; i < this.options.data.length; i++){
+            var slide = new SlideView({
+                size: this.options.size,
+                photoUrl: this.options.data[i]
+            });
+
+            this.slides.push(slide);
+        }
     }
 
     // Establishes prototype chain for EmptyView class to inherit from View
