@@ -12,6 +12,9 @@ define(function(require, exports, module) {
 
 	var mainContext = Engine.createContext();
 
+	// simple Get request to the Picasa API with a callback
+	Utility.loadURL(SlideData.getUrl(), initApp);
+
 	function initApp(data) {
 
 		// parses out response data and retrieves arrays of URLs
@@ -25,7 +28,4 @@ define(function(require, exports, module) {
 		// add the instance to the mainContext
 		mainContext.add(appView);
 	}
-
-	// simple Get request to the Picasa API with a callback
-	Utility.loadURL(SlideData.getUrl(), initApp);
 });

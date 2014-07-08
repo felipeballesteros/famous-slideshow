@@ -33,11 +33,6 @@ define(function(require, exports, module) {
 
         _createLightbox.call(this);
         _createSlides.call(this);
-
-        // Add the slideView object
-        var slideView = new SlideView();
-
-        this.add(slideView);
     }
 
     function _createSlides() {
@@ -52,15 +47,22 @@ define(function(require, exports, module) {
 
             this.slides.push(slide);
         }
+
+        this.showCurrentSlide();
     }
 
-    // Establishes prototype chain for EmptyView class to inherit from View
+        // Establishes prototype chain for EmptyView class to inherit from View
     SlideshowView.prototype = Object.create(View.prototype);
     SlideshowView.prototype.constructor = SlideshowView;
 
+    SlideshowView.prototype.showCurrentSlide = function() {
+		var slide = this.slides[this.currentIndex];
+		this.lightbox.show(slide);
+	};
+
     // Default options for EmptyView class
     SlideshowView.DEFAULT_OPTIONS = {
-        size:[450,500],
+        size: [450, 500],
         data: undefined,
         lightboxOpts: {}
     };
