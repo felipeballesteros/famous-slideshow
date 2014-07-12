@@ -49,7 +49,7 @@ define(function(require, exports, module) {
 
             // adding click listener
             // on click, calling .showNextSlide()
-            // note that we are binding showNextSlide to the slidshow
+            // note that we are binding showNextSlide to the slideshow
             // to maintain the correct context when called
 
             slide.on('click', this.showNextSlide.bind(this));
