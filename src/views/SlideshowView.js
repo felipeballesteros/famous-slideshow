@@ -8,6 +8,7 @@ define(function(require, exports, module) {
     var Surface = require('famous/core/Surface');
     var Transform = require('famous/core/Transform');
     var StateModifier = require('famous/modifiers/StateModifier');
+    var Easing = require('famous/transitions/Easing');
 
     var SlideView = require('views/SlideView');
     var Lightbox = require('famous/views/Lightbox');
@@ -78,10 +79,38 @@ define(function(require, exports, module) {
     SlideshowView.DEFAULT_OPTIONS = {
         size: [450, 500],
         data: undefined,
-        lightboxOpts: {}
+        lightboxOpts: {
+            inTransform: Transform.translate(300, 0, 0),
+            outTransform: Transform.translate(-500, 0, 0),
+            inTransition: { duration: 500, curve: Easing.outBack },
+            outTransition: { duration: 350, curve: Easing.inQuad }
+        }
     };
 
     // Define your helper functions and prototype methods here
 
     module.exports = SlideshowView;
+
+    /*Lightbox.DEFAULT_OPTIONS = {
+        // 'in' state
+        inTransform: Transform.scale(0.001, 0.001, 0.001),
+        inOpacity: 0,
+        inOrigin: [0.5, 0.5],
+
+        // 'show' state
+        showTransform: Transform.identity,
+        showOpacity: 1,
+        showOrigin: [0.5, 0.5],
+
+        // 'out' state
+        outTransform: Transform.scale(0.001, 0.001, 0.001),
+        outOpacity: 0,
+        outOrigin: [0.5, 0.5],
+
+        // transition parameters
+        inTransition: true,
+        outTransition: true,
+        overlap: false
+    }; */
+
 });
