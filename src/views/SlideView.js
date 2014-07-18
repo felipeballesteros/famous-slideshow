@@ -27,7 +27,7 @@ define(function(require, exports, module) {
 
         var backgroundModifier = new StateModifier({
             origin: [0.5, 0],
-            align: [0.5 - this.width/2, 0]
+            align: [0.5, 0]
         });
 
         this.mainNode.add(backgroundModifier).add(background);
@@ -55,7 +55,7 @@ define(function(require, exports, module) {
 
         var filmModifier = new StateModifier({
             origin: [0.5, 0],
-            align: [0.5 - this.width/2, 0],
+            align: [0.5, 0],
             transform: Transform.translate(0, this.options.filmBorder, 1)
         });
 
@@ -77,7 +77,7 @@ define(function(require, exports, module) {
 
         this.photoModifier = new StateModifier({
             origin: [0.5, 0],
-            align: [0.5  - this.width/2, 0],
+            align: [0.5, 0],
             transform: Transform.translate(0, this.options.filmBorder + this.options.photoBorder, 2)
         });
 
