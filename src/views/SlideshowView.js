@@ -87,7 +87,7 @@ define(function(require, exports, module) {
             outTransform: Transform.rotateY(-Math.PI/2),
             outOpacity: 1,
             outOrigin: [0, 0],
-            inTransition: { duration: 500, curve: 'linear' },
+            inTransition: { duration : 500, curve: 'linear' },
             outTransition: { duration: 700, curve: 'linear' },
             overlap: true
         }
